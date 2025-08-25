@@ -6,7 +6,7 @@ on:
 jobs:
   build-kernel:
     name: Build Kernel
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest # Use the latest available runner
     steps:
       - name: Build
         uses: dabao1955/kernel_build_action@main
@@ -16,16 +16,16 @@ jobs:
           config: sdm845_defconfig
           arch: arm64
           
-          aosp-clang: false 
-          other-clang-url: 'https://github.com/kdrag0n/proton-clang'
-          other-clang-branch: 'master'
+          # --- Toolchain Configuration ---
+          # We are now using the specific AOSP Clang version
+          aosp-clang: true 
+          aosp-clang-version: 'r498229b' # This is the specific revision for Clang 17.0.2
 
           # --- Feature Configuration ---
-          ksu: true # Enable KernelSU, as per the branch name
-          anykernel3: true # Package the result into a flashable zip
+          ksu: false
+          anykernel3: true
 
           # --- Build & Release Configuration ---
-          # This command adds the custom name to your kernel version string
-          extra-cmd: 'LOCALVERSION="-Etude-Op.13-No.2"' 
-          release: true # Automatically create a release with the zip
-          access-token: ${{ secrets.GITHUB_TOKEN }} # Token to allow releasing
+          extra-cmd: 'LOCALVERSION="-Etude-Op.13-No.2"'
+          release: true
+          access-token: ${{ secrets.GITHUB_TOKEN }}
