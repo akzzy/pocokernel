@@ -20,7 +20,7 @@ jobs:
           # We are now using the specific AOSP Clang version
           aosp-gcc: true
           aosp-clang: true 
-          aosp-clang-version: 'r498229b' # This is the specific revision for Clang 17.0.2
+          aosp-clang-version: 'r487747c' # This is the specific revision for Clang 17.0.2
 
           # --- Feature Configuration ---
           ksu: false
